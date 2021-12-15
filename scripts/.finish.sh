@@ -3,9 +3,8 @@ brew upgrade --cask
 brew cleanup
 
 killall Finder
-
-sudo chmod g-w /usr/local/share/zsh/
-sudo chmod g-w /usr/local/share/zsh/site-functions/
+sudo chmod g-w "$(brew --prefix)/share/zsh/"
+sudo chmod g-w "$(brew --prefix)/share/zsh/site-functions/"
 for file in $(ls -A ${0:a:h}/../dotfiles); do
   rm -f ~/$file && ln -f -s ${0:a:h}/../dotfiles/$file ~/$file
 done

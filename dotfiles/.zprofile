@@ -21,7 +21,7 @@ alias code="code-insiders "
 # Java tools Shortcuts
 alias jmeter="jenv exec jmeter "
 
-alias nuget="mono /usr/local/bin/nuget.exe"
+# alias nuget="mono /usr/local/bin/nuget.exe"
 
 # Oh My ZSH
 # Not sure yet if I want to add it

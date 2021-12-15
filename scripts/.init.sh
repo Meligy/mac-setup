@@ -41,10 +41,19 @@ softwareupdate --all --install --force
 sudo xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 # Homebrew becomes available after this
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+brew update --force --quiet || {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [[ $(uname -p) == 'arm' ]]
+    then
+      alias brew="/opt/homebrew/bin/brew"
+    else
+      alias brew="/usr/local/bin/brew"
+  fi
+}
 
 brew install -q zsh && brew link --overwrite zsh
+
+export PATH="$(brew --prefix)/bin:$PATH"
 
 brew upgrade
 

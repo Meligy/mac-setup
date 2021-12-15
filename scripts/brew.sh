@@ -2,7 +2,8 @@
 brew install -q zsh-completions
 autoload -Uz compinit
 rm -f ~/.zcompdump; compinit
-chmod go-w '/usr/local/share'
+
+chmod go-w "$(brew --prefix)/share"
 
 brew install -q tkdiff
 

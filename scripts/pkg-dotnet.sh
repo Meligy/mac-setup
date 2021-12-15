@@ -5,8 +5,9 @@ brew uninstall --cask mono-mdk
 
 # NuGet, via https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools#macoslinux
 # Download the latest stable `nuget.exe` to `/usr/local/bin`
-sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-chmod +x /usr/local/bin/nuget.exe
+# sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+# chmod +x /usr/local/bin/nuget.exe
+brew install -q nuget
 
 # Latest dotnet
 brew install --cask -q dotnet-sdk
