@@ -37,6 +37,9 @@ fi
 
 softwareupdate --all --install --force
 
+# Via https://github.com/nodejs/node-gyp/issues/569
+sudo xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
 # Homebrew becomes available after this
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 export PATH="/usr/local/bin:$PATH"
