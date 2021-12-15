@@ -49,6 +49,9 @@ brew install -q zsh && brew link --overwrite zsh
 brew upgrade
 brew upgrade --cask
 
+# Reset bad app store login / data if any
+sudo rm -rf ~/Library/Containers/com.apple.appstore/Data/Library/Caches/com.apple.appstore
+
 brew install -q mas
 sudo mas account
 if sudo test $? -ne 0; then
