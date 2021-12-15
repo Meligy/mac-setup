@@ -4,17 +4,17 @@
 if [[ $(uname -p) == 'arm' ]]; then
   /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 fi
+  
+# Fiex an error:
+#   xcode-select: error: unable to get active developer directory, use `sudo xcode-select --switch path/to/Xcode.app` to set one (or see `man xcode-select`)
+#   xcode-select: note: install requested for command line developer tools
+#   xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+# Found via https://stackoverflow.com/questions/17980759/xcode-select-active-developer-directory-error
+sudo xcode-select --reset
 
 # Install Xcode Command-Line Tools
 # Inspired by https://github.com/jon-van/Setup_macOS/blob/master/setup.sh
 if ! xcode-select -p; then
-  
-  # Fiex an error:
-  #   xcode-select: error: unable to get active developer directory, use `sudo xcode-select --switch path/to/Xcode.app` to set one (or see `man xcode-select`)
-  #   xcode-select: note: install requested for command line developer tools
-  #   xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
-  # Found via https://stackoverflow.com/questions/17980759/xcode-select-active-developer-directory-error
-  sudo xcode-select --reset
 
   sudo xcode-select --install
 
@@ -36,8 +36,7 @@ softwareupdate --all --install --force
 
 # Homebrew
 if test ! $(which brew); then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" \
-    </dev/null # avoid prompt to press enter
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   export PATH="/usr/local/bin:$PATH"
 fi
 
@@ -49,7 +48,7 @@ brew upgrade --cask
 brew install -q mas
 sudo mas account
 if sudo test $? -ne 0; then
-  echo "Press Enter/Return after signing in to App Store"
+  echo "Press Enter/Return after signing in to App Store AND macOS developer tools are fully installed"
   open "/System/Applications/App Store.app"
   read
 fi

@@ -7,10 +7,16 @@ if [[ -z "${CI}" ]]; then
   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 fi
 
-# When you start a child shell, ensure it's clean
-rm -f ~/.zprofile;
-rm -f ~/.zshrc;
-rm -f ~/.zcompdump;
+if test -f ~/.zprofile || test -f ~/.zshrc || test -f ~/.zshenv || test -f ~/.zcompdump; then
+  echo Cleaning files affecting the shell execution...
+  rm -f ~/.zprofile;
+  rm -f ~/.zshrc;
+  rm -f ~/.zshenv;
+  rm -f ~/.zcompdump;
+  ./$(basename $0) && exit
+fi
+
+echo Starting...
 
 (
   files=( '.init.sh' );
@@ -19,7 +25,7 @@ rm -f ~/.zcompdump;
   for file in $files; do 
     echo "\n<<<<<<";
     echo "Started running scripts/$file ...\n";
-    zsh ${0:a:h}/scripts/$file;
+    zsh -l ${0:a:h}/scripts/$file;
     echo "\n... Finished running scripts/$file";
     echo ">>>>>>\n";
   done;
