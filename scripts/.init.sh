@@ -61,9 +61,10 @@ fi
 
 # After a macOS upgrade, you may not find XCode
 (
-  echo "before xcode"
   sudo mas lucky xcode
-  echo "after xcode"
+  sudo mas lucky xcode
+  echo "Press Enter/Return after XCode has finished installing. If you get an error, install it manually before continuing"
+  read
   sudo xcodebuild -runFirstLaunch
   sudo xcodebuild -license accept
 )
