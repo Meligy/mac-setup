@@ -25,7 +25,7 @@ echo Starting...
   for file in $files; do 
     echo "\n<<<<<<";
     echo "Started running scripts/$file ...\n";
-    zsh -l ${0:a:h}/scripts/$file;
+    source ${0:a:h}/scripts/$file;
     echo "\n... Finished running scripts/$file";
     echo ">>>>>>\n";
   done;
