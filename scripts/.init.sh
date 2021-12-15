@@ -42,7 +42,7 @@ sudo xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo xco
 
 # Homebrew becomes available after this
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 brew install -q zsh && brew link --overwrite zsh
 
