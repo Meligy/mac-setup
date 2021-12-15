@@ -1,3 +1,10 @@
+# Install Rosetta to run Intel-based apps on ARM
+# Detection is based on https://stackoverflow.com/a/65259353
+# Install command is copied from https://osxdaily.com/2020/12/04/how-install-rosetta-2-apple-silicon-mac/
+if [[ $(uname -p) == 'arm' ]]; then
+  /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+fi
+
 # Install Xcode Command-Line Tools
 # Inspired by https://github.com/jon-van/Setup_macOS/blob/master/setup.sh
 if ! xcode-select -p; then

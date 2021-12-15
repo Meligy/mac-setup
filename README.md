@@ -37,7 +37,12 @@ zsh -l ./build-machine.sh && exec zsh -l
 
 ## Known Issues
 
-- **This is currently only tested on and optimised for Intel-based Mac running latest macOS**
+- **This is currently only tested on and optimised for Intel-based Mac running latest macOS**.
+  ### ARM Support Progress
+    - ✅ Detect ARM Mac and install Rosetta when detected (Intel-based apps support)
+    - ⬜️ Check if this needs to do anything special for homebrew
+    - ⬜️ Check if this should use a different version of JVM, like Azul JSM (as suggested in [this video](https://www.youtube.com/watch?v=dCbr2iFbh8o))
+    - ... TBA (unknown unknowns)
 - Due to tolerance to long output, sometimes it can be difficult to see when a certain step has failed
 - Since the utility is mainly for my personal use, some commercial apps are also in the script, with the following limitations:
     - If you purchased the apps, you'll need to enter the keys manually. No support for entering these for you from a `.gitignored`d file or similar process
