@@ -52,7 +52,7 @@ brew upgrade
 sudo rm -rf ~/Library/Containers/com.apple.appstore/Data/Library/Caches/com.apple.appstore
 
 brew install -q mas
-sudo mas account
+# sudo mas account
 if sudo test $? -ne 0; then
   echo "Press Enter/Return after signing in to App Store"
   open "/System/Applications/App Store.app"
