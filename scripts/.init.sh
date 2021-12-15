@@ -37,11 +37,9 @@ fi
 
 softwareupdate --all --install --force
 
-# Homebrew
-if test ! $(which brew); then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  export PATH="/usr/local/bin:$PATH"
-fi
+# Homebrew becomes available after this
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+export PATH="/usr/local/bin:$PATH"
 
 brew install -q zsh && brew link --overwrite zsh
 
