@@ -47,7 +47,6 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 brew install -q zsh && brew link --overwrite zsh
 
 brew upgrade
-brew upgrade --cask
 
 # Reset bad app store login / data if any
 sudo rm -rf ~/Library/Containers/com.apple.appstore/Data/Library/Caches/com.apple.appstore
@@ -74,7 +73,7 @@ echo "The following steps do not require interaction..."
 brew install -q cask
 brew tap homebrew/cask-versions
 
-brew cask upgrade
+brew upgrade --cask
 
 brew install -q coreutils
 brew install -q openssl
