@@ -8,6 +8,14 @@ fi
 # Install Xcode Command-Line Tools
 # Inspired by https://github.com/jon-van/Setup_macOS/blob/master/setup.sh
 if ! xcode-select -p; then
+  
+  # Fiex an error:
+  #   xcode-select: error: unable to get active developer directory, use `sudo xcode-select --switch path/to/Xcode.app` to set one (or see `man xcode-select`)
+  #   xcode-select: note: install requested for command line developer tools
+  #   xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+  # Found via https://stackoverflow.com/questions/17980759/xcode-select-active-developer-directory-error
+  sudo xcode-select --reset
+
   sudo xcode-select --install
 
   # This seems to break on latest macOS, although it's recommended in Flutter setup page
