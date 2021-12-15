@@ -30,6 +30,9 @@ if ! xcode-select -p; then
   #   sudo xcode-select --install
 
   xcodebuild -runFirstLaunch
+  
+  echo "Press Enter/Return after XCode commandline tools are fully installed"
+  read
 fi
 
 softwareupdate --all --install --force
@@ -48,7 +51,7 @@ brew upgrade --cask
 brew install -q mas
 sudo mas account
 if sudo test $? -ne 0; then
-  echo "Press Enter/Return after signing in to App Store AND macOS developer tools are fully installed"
+  echo "Press Enter/Return after signing in to App Store"
   open "/System/Applications/App Store.app"
   read
 fi
