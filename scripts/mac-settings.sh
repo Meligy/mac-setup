@@ -9,7 +9,7 @@ defaults write NSGlobalDomain _HIHideMenuBar -bool true
 # defaults write com.apple.menuextra.battery ShowTime -string "YES"
 
 # I'm using battery health 3 instead, to see estimated battery time
-defaults write com.apple.systemuiserver menuExtras -array-remove "/System/Library/CoreServices/Menu Extras/Battery.menu"
+# defaults write com.apple.systemuiserver menuExtras -array-remove "/System/Library/CoreServices/Menu Extras/Battery.menu"
 
 # batteryItem=$(
 #     /usr/libexec/PlistBuddy -c Print:menuExtras ~/Library/Preferences/com.apple.systemuiserver.plist | 
