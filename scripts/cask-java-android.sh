@@ -31,13 +31,13 @@ brew install --cask -q android-platform-tools
 brew install --cask -q android-studio
 
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-
+export ANDROID_SDK_TOOLS=$ANDROID_SDK_ROOT/cmdline-tools/tools
 mkdir -p $ANDROID_SDK_TOOLS
 
 # Based on https://stackoverflow.com/a/61176718/146656
 (
     echo "Android Tools:" &&
-        ANDROID_SDK_TOOLS=$ANDROID_SDK_ROOT/cmdline-tools/tools &&
+        # ANDROID_SDK_TOOLS=$ANDROID_SDK_ROOT/cmdline-tools/tools &&
         homepage=$(curl "https://developer.android.com/studio/index.html") &&
         commandlinetools_url=$(
             echo $homepage |
