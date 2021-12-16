@@ -46,9 +46,9 @@ brew update --force --quiet || {
   echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [[ $(uname -p) == 'arm' ]]
     then
-      alias brew="/opt/homebrew/bin/brew"
+      alias brew="/opt/homebrew/bin/brew "
     else
-      alias brew="/usr/local/bin/brew"
+      alias brew="/usr/local/bin/brew "
   fi
 }
 
