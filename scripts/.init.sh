@@ -70,11 +70,11 @@ if sudo test $? -ne 0; then
 fi
 
 # After a macOS upgrade, you may not find XCode
-(
+if ! test -d /Applications/Xcode.app/; then
   sudo mas lucky xcode || (echo "Press Enter/Return after XCode has finished installing. If you get an error, install it manually before continuing"  && read)
-  sudo xcodebuild -runFirstLaunch
-  sudo xcodebuild -license accept
-)
+fi
+sudo xcodebuild -runFirstLaunch
+sudo xcodebuild -license accept
 
 echo "The following steps do not require interaction..."
 
