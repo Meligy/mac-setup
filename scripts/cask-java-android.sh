@@ -1,4 +1,6 @@
-brew install --cask -q java
+# Use ARM-friendly version of Java
+brew install --cask -q zulu
+
 brew install -q jenv
 
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -7,6 +9,9 @@ sudo jenv add $(/usr/libexec/java_home)
 sudo jenv add /Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home
 jenv global system
 
+rm -rf ~/.jenv/version
+rm -rf ~/.jenv/versions
+mkdir ~/.jenv/versions
 eval "$(jenv init -)"
 
 for jenv_p in $(jenv plugins); do
@@ -14,10 +19,9 @@ for jenv_p in $(jenv plugins); do
 done
 
 # Set latest java
-rm -f /Users/meligy/.jenv/version
-latest_Java=$(brew cask ls java | sed "s/ (.*)//" | grep jdk)
-jenv add $latest_Java/Contents/Home
-jenv global $(echo $latest_Java:t | sed "s/\.jdk//" | grep -o -E "[.0-9]+")
+# latest_Java=$(brew ls zulu | sed "s/ (.*)//" | grep jdk)
+# jenv add $latest_Java/Contents/Home
+# jenv global $(echo $latest_Java:t | sed "s/\.jdk//" | grep -o -E "[.0-9]+")
 
 # Build Tools
 brew install -q maven maven-completion
