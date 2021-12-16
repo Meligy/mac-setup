@@ -42,7 +42,8 @@ sudo xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo xco
 
 # Homebrew becomes available after this
 brew update --force --quiet || {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # echo bypasses prompt for pressing Enter/Return, as per https://github.com/Homebrew/legacy-homebrew/issues/46779#issuecomment-162819088
+  echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [[ $(uname -p) == 'arm' ]]
     then
       alias brew="/opt/homebrew/bin/brew"
