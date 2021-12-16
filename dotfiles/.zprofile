@@ -8,12 +8,12 @@
 # # Docs suggest you put this in .zshrc but here is faster, see https://developer.bring.com/blog/configuring-jenv-the-right-way/
 # export PATH="$HOME/.jenv/bin:$PATH"
 
-if [[ $(which jenv &> /dev/null) ]] ; then
-    # eval "$(jenv init -)"
-    # Faster jenv init via https://github.com/jenv/jenv/issues/148#issuecomment-230259636
-    eval "$(jenv init - --no-rehash)"
-    (jenv rehash &) 2>/dev/null
-fi
+# if [[ $(which jenv &> /dev/null) ]] ; then
+#     # eval "$(jenv init -)"
+#     # Faster jenv init via https://github.com/jenv/jenv/issues/148#issuecomment-230259636
+#     eval "$(jenv init - --no-rehash)"
+#     (jenv rehash &) 2>/dev/null
+# fi
 
 
 alias code="code-insiders "

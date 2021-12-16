@@ -1,22 +1,22 @@
 # Use ARM-friendly version of Java
 brew install --cask -q zulu
 
-brew install -q jenv
+# brew install -q jenv
 
-export PATH="$HOME/.jenv/bin:$PATH"
+# export PATH="$HOME/.jenv/bin:$PATH"
 
-sudo jenv add $(/usr/libexec/java_home)
-sudo jenv add /Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home
-jenv global system
+# sudo jenv add $(/usr/libexec/java_home)
+# sudo jenv add /Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home
+# jenv global system
 
-rm -rf ~/.jenv/version
-rm -rf ~/.jenv/versions
-mkdir ~/.jenv/versions
-eval "$(jenv init -)"
+# rm -rf ~/.jenv/version
+# rm -rf ~/.jenv/versions
+# mkdir ~/.jenv/versions
+# eval "$(jenv init -)"
 
-for jenv_p in $(jenv plugins); do
-    jenv enable-plugin $jenv_p
-done
+# for jenv_p in $(jenv plugins); do
+#     jenv enable-plugin $jenv_p
+# done
 
 # Set latest java
 # latest_Java=$(brew ls zulu | sed "s/ (.*)//" | grep jdk)

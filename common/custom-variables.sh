@@ -4,7 +4,7 @@ fi
 
 # jenv
 # Docs suggest you put this in .zshrc but here is faster, see https://developer.bring.com/blog/configuring-jenv-the-right-way/
-export PATH="$HOME/.jenv/bin:$PATH"
+#export PATH="$HOME/.jenv/bin:$PATH"
 
 # Android
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
