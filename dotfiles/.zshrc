@@ -3,7 +3,7 @@
 # brew install -q zsh-completions
 # if type brew &>/dev/null; then
 # FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-export FPATH=/usr/local/share/zsh-completions:$FPATH
+export FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
 # # Thw following is run once at the end anyway
 # autoload -Uz compinit
 # compinit

@@ -10,13 +10,13 @@ fi
 #   xcode-select: note: install requested for command line developer tools
 #   xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
 # Found via https://stackoverflow.com/questions/17980759/xcode-select-active-developer-directory-error
-sudo xcode-select --reset
+sudo -E xcode-select --reset
 
 # Install Xcode Command-Line Tools
 # Inspired by https://github.com/jon-van/Setup_macOS/blob/master/setup.sh
 if ! xcode-select -p; then
 
-  sudo xcode-select --install
+  sudo -E xcode-select --install
 
   # This seems to break on latest macOS, although it's recommended in Flutter setup page
   # sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
@@ -38,45 +38,45 @@ fi
 softwareupdate --all --install --force
 
 # Via https://github.com/nodejs/node-gyp/issues/569
-sudo xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo -E xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 # Homebrew becomes available after this
 brew update --force --quiet || {
   # echo bypasses prompt for pressing Enter/Return, as per https://github.com/Homebrew/legacy-homebrew/issues/46779#issuecomment-162819088
   echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if [[ $(uname -p) == 'arm' ]]
-    then
-      alias brew="/opt/homebrew/bin/brew "
-    else
-      alias brew="/usr/local/bin/brew "
-  fi
 }
 
-brew install -q zsh && brew link --overwrite zsh
+if [[ $(uname -p) == 'arm' ]]
+  then
+    export HOMEBREW_PREFIX="/opt/homebrew"
+  else
+    export HOMEBREW_PREFIX="/usr/local"
+fi
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 
-export PATH="$(brew --prefix)/bin:$PATH"
+brew install -q zsh && brew link --overwrite zsh
 
 brew upgrade
 
 # Reset bad app store login / data if any
-sudo rm -rf ~/Library/Containers/com.apple.appstore/Data/Library/Caches/com.apple.appstore
+sudo -E rm -rf ~/Library/Containers/com.apple.appstore/Data/Library/Caches/com.apple.appstore
 
 brew install -q mas
-# sudo mas account
-if sudo test $? -ne 0; then
-  echo "Press Enter/Return after signing in to App Store"
-  open "/System/Applications/App Store.app"
-  read
-fi
 
 # After a macOS upgrade, you may not find XCode
 if ! test -d /Applications/Xcode.app/; then
-  sudo mas lucky xcode || (echo "Press Enter/Return after XCode has finished installing. If you get an error, install it manually before continuing"  && read)
+  echo "Press sign in to App Store then quit it to continue..."
+  open -W "/System/Applications/App Store.app"
+  sudo -E mas lucky xcode || ( \
+    echo "Press Enter/Return after XCode has finished installing. If you get an error, install it manually before continuing"  && \
+    open "/System/Applications/App Store.app" && \
+    read \
+  )
 fi
-sudo xcodebuild -runFirstLaunch
-sudo xcodebuild -license accept
+sudo -E xcodebuild -runFirstLaunch
+sudo -E xcodebuild -license accept
 
-echo "The following steps do not require interaction..."
+# echo "The following steps do not require interaction..."
 
 brew install -q cask
 brew tap homebrew/cask-versions
@@ -89,6 +89,8 @@ brew install -q curl
 brew install -q wget
 brew install -q jq
 brew install -q pup # jq but for HTML
+
+brew install -q git
 
 # This looks like it's broken in Big Sur, probably Xcode needs a new 12.3 version
 #

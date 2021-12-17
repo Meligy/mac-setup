@@ -15,13 +15,19 @@ To install, start a ZSH terminal in this directory and run the following in it:
 zsh -l ./build-machine.sh && exec zsh -l
 ```
 
+Optionally, relace `zsh` with  `zsh -e` if you want the script to attempt to stop at the first failure (doesn't always work, but worked enough in my experience while trying to get the script to work on a clean ARM-based machine). I'll probably make this the default in the future.
+
+### Clean Up
+
+The scripts cache some installers in the `temp/apps` directory. It's helpful in debug situations and the cache is smart enough to not get used instead of the latest version. But you can always delete the cache by deleting this folder or running `git clean -dfx`.
+
 ## Implementation Details & Design Decisions
 
 ### Scripts
 
 - This is for personal use, prefer simple solutions over scalable ones
 - dotfiles are in the same repository for simplicity
-- The script is designed for macOS Catalina (update: works on Big Sur), where `zsh` is the default terminal already
+- The script is designed for macOS Monterey, where `zsh` is the default terminal already, so it uses it
 - No excessive checks to avoid output warnings. If we install something and get a warning that it's installed already, that's fine
 - The script is idempotent. It can be run several times without issues. Typically I'll run the whole script whenever I add a new app etc (but the messages might be silly as per the previous point)
 - Tools that have sync do not require scripts. For example, no VS Code or Chromium browsers settings / customizations, or extensions, as these apps have profile sync
@@ -43,7 +49,7 @@ zsh -l ./build-machine.sh && exec zsh -l
     - ⬜️ Check if this needs to do anything special for homebrew
     - ⬜️ Check if this should use a different version of JVM, like Azul JSM (as suggested in [this video](https://www.youtube.com/watch?v=dCbr2iFbh8o))
     - ... TBA (unknown unknowns)
-- Due to tolerance to long output, sometimes it can be difficult to see when a certain step has failed
+- Due to tolerance to long output, sometimes it can be difficult to see when a certain step has failed (consider adding `-e` to the `zsh` command to try and fail on first error)
 - Since the utility is mainly for my personal use, some commercial apps are also in the script, with the following limitations:
     - If you purchased the apps, you'll need to enter the keys manually. No support for entering these for you from a `.gitignored`d file or similar process
     - No separation between free and paid apps, or a "--free-only" option at the moment
@@ -55,6 +61,9 @@ zsh -l ./build-machine.sh && exec zsh -l
 - The Mac settings that are scripted are much less than can be done
 - The shell reloading logic near the end might be too much
 - Some apps require modifying the Accessibility permissions, like Snagit. These were not all scripted
+- There are still cases that will ask for your admin password/fingerprint in the middle of the script run
+    - dotnet certificate install will ask twice
+    - First insntall of finderpath will ask for it too in addition to requesting accessibility permissions as well
 - Sometimes the script would hang after showing your account in app store (managed by the "mas" utility)
     - This only happened after upgrade to Big Sur, when the user was shown as still logged in to App store. It seems to happen when you are logged in to the App Store then you upgrade your macOS and it goes to a funny signed-in-but-not-really state.
     - To Keep Going (Seems non harmful, not 100% sure):

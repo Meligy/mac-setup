@@ -45,8 +45,8 @@ echo "Android Tools:" &&
     ) &&
     zipped_filename="android-cmdline-tools" &&
     echo "Downloading and installing $commandlinetools_url as $zipped_filename.zip" &&
-    curl -L -J -C - $commandlinetools_url -o $zipped_filename.zip --http1.1 &&
-    unzip -q -u $zipped_filename.zip -d $TEMP_Apps/$zipped_filename/ &&
+    curl -L -J -C - $commandlinetools_url -o $TEMP_Apps/$zipped_filename.zip --http1.1 &&
+    unzip -q -u $TEMP_Apps/$zipped_filename.zip -d $TEMP_Apps/$zipped_filename/ &&
     rm -rf $ANDROID_SDK_TOOLS &&
     mv $TEMP_Apps/$zipped_filename/* $ANDROID_SDK_TOOLS/ &&
     echo "yes" | $ANDROID_SDK_TOOLS/bin/sdkmanager --licenses &&

@@ -21,8 +21,10 @@ echo Starting...
 (
   files=( '.init.sh' );
   files+=( $(ls ${0:a:h}/scripts) );
+  # For debugging a specific file, comment the line above, and add another line like: files+='<FILENAME IN SCRIPTS FOLDER>.sh';
   files+='.finish.sh';
   for file in $files; do 
+    clear
     echo "\n<<<<<<";
     echo "Started running scripts/$file ...\n";
     source ${0:a:h}/scripts/$file;

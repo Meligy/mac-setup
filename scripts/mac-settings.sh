@@ -2,7 +2,8 @@
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Autohide menu bar
-defaults write NSGlobalDomain _HIHideMenuBar -bool true
+# ** Needs to change as on M1x machines it's not a good idea **
+# defaults write NSGlobalDomain _HIHideMenuBar -bool true
 
 # Do not work in latest macOS
 # defaults write com.apple.menuextra.battery ShowPercent -string "NO"
