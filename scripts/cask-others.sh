@@ -30,3 +30,6 @@ brew install --cask -q zoom
 
 # A screen resolution setting tool
 brew install --cask -q avibrazil-rdm
+
+# Audio recording and editing software
+brew install --cask -q audacity
