@@ -16,7 +16,8 @@
 # fi
 
 
-alias code="code-insiders "
+alias code="env - PATH=$DOTNET_ROOT/x64:$PATH code-insiders "
+# alias code="code-insiders "
 
 # Java tools Shortcuts
 alias jmeter="jenv exec jmeter "

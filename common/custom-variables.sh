@@ -41,14 +41,15 @@ export PATH=$PATH:$GOROOT/bin
 # Update: above seems fixed, so trying proper way:
 export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 
+# Homebrew
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+
 # dotnet
 # Based on https://docs.microsoft.com/en-us/dotnet/core/install/macos
 # ** do NOT change `/usr/local` to $HOMEBREW_PREFIX here. For dotnet, it's not **
 export DOTNET_ROOT="/usr/local/share/dotnet"
-export PATH="$DOTNET_ROOT:$PATH:$DOTNET_ROOT/x64/dotnet"
+export PATH="$DOTNET_ROOT/x64:$DOTNET_ROOT:$PATH"
 
-# Homebrew
-export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 
 ### ### ###
 # Always keep this as last line

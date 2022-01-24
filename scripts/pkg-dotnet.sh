@@ -54,6 +54,8 @@ fi
 # Based on https://docs.microsoft.com/en-us/dotnet/core/install/macos
 export DOTNET_ROOT="/usr/local/share/dotnet"
 export PATH="$DOTNET_ROOT:$PATH:$DOTNET_ROOT/x64/dotnet"
+sudo chmod +x $DOTNET_ROOT/dotnet
+sudo chmod +x $DOTNET_ROOT/x64/dotnet || $null
 
 if ! test -f $DOTNET_ROOT/dotnet
 then
@@ -89,6 +91,7 @@ sudo -E dotnet dev-certs https --trust
 #         curl -L -J -C - $direct_link -o dotnetcore-sdk-3_1_101.pkg &&
 #         sudo installer -pkg dotnetcore-sdk-3_1_101.pkg -target /
 # )
+
 # # From https://dotnet.microsoft.com/download/dotnet/5.0
 echo ".NET SDK 5.0.404"
 (
@@ -100,6 +103,20 @@ echo ".NET SDK 5.0.404"
         curl -L -J -C - $direct_link -o dotnet-sdk-5.0.404-osx-x64.pkg &&
         sudo installer -pkg dotnet-sdk-5.0.404-osx-x64.pkg -target /
 )
+# https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.101-macos-x64-installer
+# # From https://dotnet.microsoft.com/download/dotnet/6.0
+echo ".NET SDK 6.0.101"
+(
+    cd $TEMP_Apps &&
+        direct_link=$(
+            curl -L https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.101-macos-x64-installer |
+                pup 'a#directLink attr{href}'
+        ) &&
+        curl -L -J -C - $direct_link -o dotnet-sdk-6.0.101-macos-x64.pkg &&
+        sudo installer -pkg dotnet-sdk-6.0.101-macos-x64.pkg -target /
+)
+
+sudo chmod -R 777 $DOTNET_ROOT
 
 # Maybe this should be earlier, but the above was really trying to be independnet from VS
 # So, it's good to keep the above working as-is
