@@ -25,6 +25,10 @@ compinit
 # But it cannot be called from this file, needs to be in terminal
 # compaudit | xargs chmod g-w;
 
+# There's what seems to be false error about this at installation.
+# So running this, but since it's UI based, running it at the end
+# open /System/Library/CoreServices/Rosetta\ 2\ Updater.app
+
 echo "!!! DONE !!!"
 echo "Please run the following to update your terminal, if not in the command already:"
 echo "exec zsh -l"

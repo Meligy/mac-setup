@@ -27,4 +27,4 @@ brew install -q hugo
 brew install -q pre-commit
 
 # ZSH prompt
-brew install spaceship
+brew install -q spaceship
