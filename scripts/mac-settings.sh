@@ -35,3 +35,26 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # "/System/Library/CoreServices/Menu Extras/AirPort.menu" 
 # "/System/Library/CoreServices/Menu Extras/Battery.menu" 
 # "/System/Library/CoreServices/Menu Extras/Clock.menu"
+
+# Check if FileVault is already enabled
+if fdesetup status | grep -q "FileVault is On"; then
+    echo "FileVault is already enabled."
+else
+    # Enable FileVault
+    echo "Enabling FileVault..."
+    currentUser=$(whoami)
+    echo "Current user: $currentUser"
+    
+    # Prompt for the user's password
+    echo "Please enter your password (for user $currentUser):"
+    read -s userPassword
+
+    # Enable FileVault
+    echo "$userPassword" | sudo -S fdesetup enable -user "$currentUser"
+fi
+
+# Enable Firewall
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+# Restart Firewall Service
+sudo pkill -HUP socketfilterfw
+echo "Firewall has been enabled."
