@@ -47,7 +47,7 @@ echo "Android Tools:" &&
     ) &&
     zipped_filename="android-cmdline-tools" &&
     echo "Downloading and installing $commandlinetools_url as $zipped_filename.zip" &&
-    curl -L -J -C - $commandlinetools_url -o $TEMP_Apps/$zipped_filename.zip --http1.1 &&
+    curl -L -C - $commandlinetools_url -o $TEMP_Apps/$zipped_filename.zip --http1.1 &&
     unzip -q -u $TEMP_Apps/$zipped_filename.zip -d $TEMP_Apps/$zipped_filename/ &&
     rm -rf $ANDROID_SDK_TOOLS &&
     mv $TEMP_Apps/$zipped_filename/* $ANDROID_SDK_TOOLS/ &&
@@ -58,24 +58,25 @@ export PATH="$ANDROID_SDK_TOOLS/bin:$PATH"
 alias sdkmanager="$ANDROID_SDK_TOOLS/bin/sdkmanager"
 # Get latest package in format `build-tools;123.45.6` but not `build-tools;124.01.2-rc7`
 # It gets all `build-tools;123.45.6 ` (note the space), sorts them, gets latest, then removes the space at the end
-sdkmanager --install "$(
+echo "yes" | sdkmanager --licenses
+echo "yes" | sdkmanager --install "$(
     sdkmanager --list | grep -o "build-tools;\\d\+.\\d\+.\\d\s" | sort --version-sort | tail -1 | grep -o "\S*"
 )"
 # Get latest `platforms;android-12345`
-sdkmanager --install "$(
+echo "yes" | sdkmanager --install "$(
     sdkmanager --list | grep -o "platforms;android-\\d\+" | sort --version-sort | tail -1
 )"
 # Get latest `sources;android-12345`
-sdkmanager --install "$(
+echo "yes" | sdkmanager --install "$(
     sdkmanager --list | grep -o "sources;android-\\d\+" | sort --version-sort | tail -1
 )"
-sdkmanager --install "extras;intel;Hardware_Accelerated_Execution_Manager"
+echo "yes" | sdkmanager --install "extras;intel;Hardware_Accelerated_Execution_Manager"
 # Get latest Google APIs Intel x86 Atom System Image
-# It gets all "google_apis;x86 " (note the space, to avoid "google_apis;x86_64"), then sorts and extracts all non-space part
-sdkmanager --install "$(
+# It gets all "google_apis;x86 " (note the space, to avoid "google_apis;x86_64"), then sorts and extracts all non-space part    
+echo "yes" | sdkmanager --install "$(
     sdkmanager --list | grep "google_apis;x86\s" | grep -o "system-images\S\+" | sort --version-sort | tail -1
 )"
-sdkmanager --update
+echo "yes" | sdkmanager --update
 echo "yes" | sdkmanager --licenses
 
 # TODO:
@@ -85,6 +86,9 @@ echo "yes" | sdkmanager --licenses
 # Required for Flutter
 sudo gem install bundler
 sudo gem install cocoapods
+sudo gem update --system
+
+# echo "yes" | flutter doctor --android-licenses
 
 #Flutter
 brew install --cask flutter

@@ -38,7 +38,7 @@ fi
 softwareupdate --all --install --force
 
 # Via https://github.com/nodejs/node-gyp/issues/569
-sudo -E xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo -E xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer || sudo -E xcode-select -s /Applications/Xcode.app/Contents/Developer
 
 # Homebrew becomes available after this
 brew update --force --quiet || {
@@ -46,12 +46,13 @@ brew update --force --quiet || {
   echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
-if [[ $(uname -p) == 'arm' ]]
-  then
-    export HOMEBREW_PREFIX="/opt/homebrew"
-  else
-    export HOMEBREW_PREFIX="/usr/local"
-fi
+# if [[ $(uname -p) == 'arm' ]]
+#   then
+#     export HOMEBREW_PREFIX="/opt/homebrew"
+#   else
+#     export HOMEBREW_PREFIX="/usr/local"
+# fi
+export HOMEBREW_PREFIX=$(brew --prefix)
 export PATH="$HOMEBREW_PREFIX/bin:$PATH"
 
 brew install -q zsh && brew link --overwrite zsh
@@ -65,6 +66,7 @@ brew install -q mas
 
 # After a macOS upgrade, you may not find XCode
 if ! test -d /Applications/Xcode.app/; then
+  mas lucky xcode
   echo "Press sign in to App Store then quit it to continue..."
   open -W "/System/Applications/App Store.app"
   sudo -E mas lucky xcode || ( \
@@ -82,6 +84,9 @@ brew install -q cask
 brew tap homebrew/cask-versions
 
 brew upgrade --cask
+
+brew install -q ruby
+brew link --force ruby
 
 brew install -q coreutils
 brew install -q openssl

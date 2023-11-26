@@ -1,6 +1,5 @@
 [[ ! -v DOTFILES_CUSTOM_VARIABLES_SET ]] && source $(dirname $(readlink $HOME/.zprofile))/../common/custom-variables.zsh
 
-export HOMEBREW_PREFIX=$(brew --prefix)
 # brew install -q zsh-completions
 # if type brew &>/dev/null; then
 # FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -120,11 +119,15 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$PATH:$VOLTA_HOME/bin"
-. $(brew --prefix asdf)/libexec/asdf.sh
+# export VOLTA_HOME="$HOME/.volta"
+# export PATH="$PATH:$VOLTA_HOME/bin"
+. $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
 
-export PATH="$PATH:$HOME/.asdf/shims"
+# export PATH="$PATH:$HOME/.asdf/shims"
+
+# export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+# For cocopods, which are needed for Flutter
+export PATH="$(gem env gemdir)/bin:$PATH"
 
 export PATH="$PATH:/Applications/Rider.app/Contents/MacOS"
 
@@ -137,7 +140,7 @@ export PATH="$PATH:$HOME/bin"
 
 
 # bun completions
-[ -s "/Users/meligy/.bun/_bun" ] && source "/Users/meligy/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

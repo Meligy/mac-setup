@@ -3,12 +3,15 @@ if [[ -v DOTFILES_CUSTOM_VARIABLES_SET ]]; then
 fi
 
 # Homebrew
-if [[ $(uname -p) == 'arm' ]]
-  then
-    export HOMEBREW_PREFIX="/opt/homebrew"
-  else
-    export HOMEBREW_PREFIX="/usr/local"
-fi
+# if [[ $(uname -p) == 'arm' ]]
+#   then
+#     export HOMEBREW_PREFIX="/opt/homebrew"
+#   else
+#     export HOMEBREW_PREFIX="/usr/local"
+# fi
+export HOMEBREW_PREFIX="/opt/homebrew"
+# export HOMEBREW_PREFIX=$(brew --prefix)
+export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
 
 # jenv
 # Docs suggest you put this in .zshrc but here is faster, see https://developer.bring.com/blog/configuring-jenv-the-right-way/
@@ -39,7 +42,7 @@ export PATH=$PATH:$GOROOT/bin
 # export PATH="$PATH:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 #
 # Update: above seems fixed, so trying proper way:
-export PATH=$PATH:"$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+# export PATH=$PATH:"$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 
 # Homebrew
 export PATH=$PATH:$HOMEBREW_PREFIX/bin

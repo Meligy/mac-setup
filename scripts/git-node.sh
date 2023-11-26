@@ -33,4 +33,6 @@ brew install -q pnpm
 
 brew install -q eslint --ignore-dependencies
 
+brew install -q deno
+
 curl -fsSL https://bun.sh/install | bash

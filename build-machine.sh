@@ -1,4 +1,6 @@
 
+# To run a single file:
+# TEMP_Apps=temp/apps source ./scripts/FILE
 export TEMP_Apps=${0:a:h}/temp/apps/
 
 if [[ -z "${CI}" ]]; then
