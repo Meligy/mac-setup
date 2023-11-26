@@ -8,12 +8,14 @@ brew install -q git-flow
 
 # Git Cedential Manager https://github.com/GitCredentialManager/git-credential-manager
 brew tap microsoft/git
-brew install -q --cask git-credential-manager-core
+# brew install -q --cask git-credential-manager-core
+brew install --cask git-credential-manager
 # Apply it
 git config --global credential."https://dev.azure.com".azreposCredentialType oauth
 git config --global credential."https://dev.azure.com".useHttpPath true
 git config --global credential.helper ""
-git config --global credential.helper "/usr/local/share/gcm-core/git-credential-manager"
+# git config --global credential.helper "/usr/local/share/gcm-core/git-credential-manager"
+git config --global credential.helper manager-core
 
 # A git CLI alternative with Github specific features
 brew install -q hub
