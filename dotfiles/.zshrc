@@ -1,5 +1,6 @@
 [[ ! -v DOTFILES_CUSTOM_VARIABLES_SET ]] && source $(dirname $(readlink $HOME/.zprofile))/../common/custom-variables.zsh
 
+export HOMEBREW_PREFIX=$(brew --prefix)
 # brew install -q zsh-completions
 # if type brew &>/dev/null; then
 # FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -64,7 +65,7 @@ export FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
 
 # if type brew &>/dev/null
 # then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
 
   autoload -Uz compinit
   compinit
@@ -78,7 +79,8 @@ export FPATH=$HOME/.zfunctions:$FPATH
 autoload -Uz promptinit
 promptinit
 # autoload -U promptinit; promptinit
-prompt spaceship
+# prompt spaceship
+source $HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh
 
 # bash completions for ZSH
 # Based on https://scriptingosx.com/2019/07/moving-to-zsh-part-5-completions/
@@ -105,14 +107,14 @@ compdef _dotnet_zsh_complete dotnet
 conda config --set auto_activate_base false
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$("$HOMEBREW_PREFIX/anaconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOMEBREW_PREFIX/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOMEBREW_PREFIX/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="$PATH:/opt/homebrew/anaconda3/bin"
+        export PATH="$PATH:$HOMEBREW_PREFIX/anaconda3/bin"
     fi
 fi
 unset __conda_setup

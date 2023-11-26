@@ -60,7 +60,8 @@ export PATH=$HOME/.docker/bin:$PATH
 
 # Python 
 # export PATH=$PATH:$HOME/Library/Python/*/bin
-export PATH="$(ls -td $HOME/Library/Python/3.* | head -n 1)/bin":"$HOMEBREW_PREFIX/anaconda3/bin:$PATH"
+# export PATH="$(ls -td $HOME/Library/Python/3.* | head -n 1)/bin":"$HOMEBREW_PREFIX/anaconda3/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/anaconda3/bin:$PATH"
 
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
