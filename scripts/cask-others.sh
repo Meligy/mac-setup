@@ -33,3 +33,6 @@ brew install --cask -q avibrazil-rdm
 
 # Audio recording and editing software
 brew install --cask -q audacity
+
+# For Python
+brew install --cask -q anaconda

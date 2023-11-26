@@ -3,6 +3,9 @@
 # brew install --cask -q mono-mdk
 # brew uninstall --cask mono-mdk
 
+## At the current time this installs VS 2019 which we do not want
+brew uninstall --cask -q visual-studio
+
 # A dependency for apps using the System.Drawing.Common assembly, 
 #   as per https://docs.microsoft.com/en-us/dotnet/core/install/macos#libgdiplus
 brew install -q mono-libgdiplus
@@ -19,6 +22,8 @@ sudo rm -rf /usr/local/share/dotnet/
 # seems like -q breaks it
 # It's not working, so trying to see if interactive works
 brew install --force --cask dotnet-sdk
+
+sudo dotnet workload restore
 
 # echo "Press Enter when dotnet finishes installing...."
 # read
@@ -64,7 +69,7 @@ then
 fi
 
 # Potential improvements might be found at the related sections in https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl
-sudo -E dotnet dev-certs https --clean
+sudo -E dotnet dev-certs https --clean  
 sudo -E dotnet dev-certs https --trust
 
 # Older packages that I still use for certin projects
@@ -92,6 +97,8 @@ sudo -E dotnet dev-certs https --trust
 #         sudo installer -pkg dotnetcore-sdk-3_1_101.pkg -target /
 # )
 
+brew install -q dotnet@6
+
 # # From https://dotnet.microsoft.com/download/dotnet/5.0
 echo ".NET SDK 5.0.404"
 (
@@ -115,11 +122,24 @@ echo ".NET SDK 6.0.101"
         curl -L -J -C - $direct_link -o dotnet-sdk-6.0.101-macos-x64.pkg &&
         sudo installer -pkg dotnet-sdk-6.0.101-macos-x64.pkg -target /
 )
+echo ".NET SDK 6.0.202"
+(
+    cd $TEMP_Apps &&
+        direct_link=$(
+            curl -L https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.202-macos-x64-installer |
+                pup 'a#directLink attr{href}'
+        ) &&
+        curl -L -J -C - $direct_link -o dotnet-sdk-6.0.202-macos-x64.pkg &&
+        sudo installer -pkg dotnet-sdk-6.0.202-macos-x64.pkg -target /
+)
 
 sudo chmod -R 777 $DOTNET_ROOT
 
 # Maybe this should be earlier, but the above was really trying to be independnet from VS
 # So, it's good to keep the above working as-is
-brew install --cask -q visual-studio
 
 # dotnet tool install -g JetBrains.ReSharper.GlobalTools
+
+# Would have Visual Studio 2022 here, but it's hard to do
+
+brew install -q bot-framework-emulator

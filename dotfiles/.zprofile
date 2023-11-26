@@ -1,4 +1,4 @@
-[[ ! -v DOTFILES_CUSTOM_VARIABLES_SET ]] && source $(dirname $(readlink $HOME/.zprofile))/../common/custom-variables.sh
+[[ ! -v DOTFILES_CUSTOM_VARIABLES_SET ]] && source $(dirname $(readlink $HOME/.zprofile))/../common/custom-variables.zsh
 
 # export PATH="/usr/local/bin:$PATH"
 
@@ -16,7 +16,7 @@
 # fi
 
 
-alias code="env - PATH=$DOTNET_ROOT/x64:$PATH code-insiders "
+# alias code="env - PATH=$DOTNET_ROOT/x64:$PATH code-insiders "
 # alias code="code-insiders "
 
 # Java tools Shortcuts
@@ -36,3 +36,9 @@ alias jmeter="jenv exec jmeter "
 #     export NVM_DIR="$HOME/.nvm"
 #     \. "$NVM_DIR/nvm.sh"
 # fi
+
+# # To install shell completions, add this to your profile:
+#   if command -v ngrok &>/dev/null; then
+#     eval "$(ngrok completion)"
+#   fi
+

@@ -30,6 +30,8 @@ brew install -q gradle gradle-completion
 brew install --cask -q android-platform-tools
 brew install --cask -q android-studio
 
+brew install --cask -q android-file-transfer
+
 
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export ANDROID_SDK_TOOLS=$ANDROID_SDK_ROOT/cmdline-tools/tools

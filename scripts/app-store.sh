@@ -23,6 +23,8 @@ mas lucky lastpass
 
 mas upgrade
 
+mas search "DaVinci Resolve"
+
 
 # for line in $(echo $(mas list)); do
 #     test $line && [[ $line =~ ^[0-9]+$ ]] && mas upgrade $line

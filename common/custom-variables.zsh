@@ -22,7 +22,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/c
 # Some apps, like JavaScript debugging extension for VS Code, require node to be in PATH
 # We override the node executables later so they refer to current nvm version not latest
 # NVM_DIR="$HOME/.nvm" // Do not make it available
-export PATH="$(ls -td $HOME/.nvm/versions/node/* | head -n 1)/bin:$PATH"
+# export PATH="$(ls -td $HOME/.nvm/versions/node/* | head -n 1)/bin":$PATH
 
 # GO
 export GOPATH=$HOME/go
@@ -39,17 +39,31 @@ export PATH=$PATH:$GOROOT/bin
 # export PATH="$PATH:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 #
 # Update: above seems fixed, so trying proper way:
-export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+export PATH=$PATH:"$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 
 # Homebrew
-export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+export PATH=$PATH:$HOMEBREW_PREFIX/bin
+
+export PATH=$PATH:$HOME/.asdf/shims
 
 # dotnet
 # Based on https://docs.microsoft.com/en-us/dotnet/core/install/macos
 # ** do NOT change `/usr/local` to $HOMEBREW_PREFIX here. For dotnet, it's not **
 export DOTNET_ROOT="/usr/local/share/dotnet"
-export PATH="$DOTNET_ROOT/x64:$DOTNET_ROOT:$PATH"
+# export PATH="$DOTNET_ROOT/x64:$DOTNET_ROOT:$PATH"
+#
+# Tools directory for making global tools available
+export PATH="$PATH:$HOME/.dotnet/tools"
 
+# docker
+export PATH=$HOME/.docker/bin:$PATH
+
+# Python 
+# export PATH=$PATH:$HOME/Library/Python/*/bin
+export PATH="$(ls -td $HOME/Library/Python/3.* | head -n 1)/bin":"$HOMEBREW_PREFIX/anaconda3/bin:$PATH"
+
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
 
 ### ### ###
 # Always keep this as last line

@@ -102,4 +102,7 @@ brew install -q tccutil
 
 brew install --cask -q jetbrains-toolbox
 
+# asdf
+brew install -q coreutils curl git asdf
+
 mkdir -p $TEMP_Apps
