@@ -7,5 +7,7 @@ brew install --cask -q docker && open /Applications/Docker.app
 brew install -q docker-buildx
 
 brew install -q kubectl
+brew install -q helm
+brew install -q minikube
 
 kubectl completion zsh > "${fpath[1]}/_kubectl"
