@@ -27,7 +27,7 @@ echo Starting...
     clear
     echo "\n<<<<<<";
     echo "Started running scripts/$file ...\n";
-    source ${0:a:h}/scripts/$file;
+    source "${0:a:h}/scripts/$file";
     echo "\n... Finished running scripts/$file";
     echo ">>>>>>\n";
   done;

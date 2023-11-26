@@ -1,13 +1,15 @@
-brew upgrade
-brew upgrade --cask
-brew cleanup
-
-killall -q Finder
 sudo -E chmod -R g-w "$(brew --prefix)/share/zsh/"
 sudo -E chmod -R g-w "$(brew --prefix)/share/zsh/site-functions/"
 for file in $(ls -A ${0:a:h}/../dotfiles); do
   rm -f ~/$file && ln -f -s ${0:a:h}/../dotfiles/$file ~/$file
 done
+
+brew upgrade
+brew upgrade --cask
+brew cleanup
+
+killall -q Finder
+
 export fpath=(/usr/share/zsh/$ZSH_VERSION/functions/ $fpath)
 for fdir in $fpath; do
   if [ -d $fdir ]; then
