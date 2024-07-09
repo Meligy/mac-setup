@@ -11,7 +11,7 @@ fi
 # fi
 export HOMEBREW_PREFIX="/opt/homebrew"
 # export HOMEBREW_PREFIX=$(brew --prefix)
-export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH:/usr/local/bin/"
 
 # jenv
 # Docs suggest you put this in .zshrc but here is faster, see https://developer.bring.com/blog/configuring-jenv-the-right-way/
@@ -65,6 +65,8 @@ export PATH=$HOME/.docker/bin:$PATH
 # export PATH=$PATH:$HOME/Library/Python/*/bin
 # export PATH="$(ls -td $HOME/Library/Python/3.* | head -n 1)/bin":"$HOMEBREW_PREFIX/anaconda3/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/anaconda3/bin:$PATH"
+
+alias nuget="mono /usr/local/bin/nuget.exe"
 
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export LDFLAGS="-L/usr/local/opt/openssl/lib"

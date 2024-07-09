@@ -80,6 +80,7 @@ promptinit
 # autoload -U promptinit; promptinit
 # prompt spaceship
 source $HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh
+# eval "$(starship init zsh)"
 
 # bash completions for ZSH
 # Based on https://scriptingosx.com/2019/07/moving-to-zsh-part-5-completions/

@@ -1,4 +1,4 @@
-brew install --cask -q visual-studio-code-insiders
+brew install --cask -q visual-studio-code@insiders
 
 # browsers
 brew install --cask -q google-chrome

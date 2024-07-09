@@ -24,6 +24,7 @@ brew install -q pre-commit
 
 # ZSH prompt
 brew install -q spaceship
+# brew install -q starship
 
 brew install -q p7zip
 

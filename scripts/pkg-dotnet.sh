@@ -13,12 +13,19 @@ brew install -q mono-libgdiplus
 # NuGet, via https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools#macoslinux
 # Download the latest stable `nuget.exe` to `/usr/local/bin`
 # Remember: Do not install `mono-mdk` if you want to use Visual Studio for Mac
-curl -o $(brew --prefix)/bin/nuget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-chmod +x $(brew --prefix)/bin/nuget
+# curl -o $(brew --prefix)/bin/nuget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+# chmod +x $(brew --prefix)/bin/nuget
+brew install --cask -q mono-mdk
+sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
 
 # Latest dotnet
 brew uninstall --cask -q dotnet-sdk || $null
 sudo rm -rf /usr/local/share/dotnet/
+
+# https://github.com/isen-ng/homebrew-dotnet-sdk-versions
+brew tap isen-ng/dotnet-sdk-versions
+
 # seems like -q breaks it
 # It's not working, so trying to see if interactive works
 brew install --force --cask dotnet-sdk
@@ -150,3 +157,5 @@ brew link --overwrite -q dotnet
 # Update: it's discontinued now anyway.
 
 brew install -q bot-framework-emulator
+
+mkdir -p $HOME/.dotnet/tools
